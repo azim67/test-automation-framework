@@ -5,13 +5,13 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.notNullValue;
 
-public class UserApiTest {
+public class BookingApiTest extends BaseApi {
 
     @Test
     public void userCanGetBookingById() {
         RestAssured
                 .given()
-                .baseUri("https://restful-booker.herokuapp.com")
+                .baseUri(BASE_URI)
                 .when()
                 .get("/booking/1")
                 .then()

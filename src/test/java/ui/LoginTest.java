@@ -5,6 +5,9 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import org.openqa.selenium.By;
+
+
 
 public class LoginTest extends BaseTest {
 
@@ -37,6 +40,19 @@ public class LoginTest extends BaseTest {
 
         Assert.assertTrue(loginPage.getErrorMessage().contains("locked out"));
     }
+	@Test
+public void userCanAddItemToCart() {
+    driver.get("https://www.saucedemo.com/");
 
+    LoginPage loginPage = new LoginPage(driver);
+    loginPage.login("standard_user", "secret_sauce");
+
+    driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+
+    Assert.assertEquals(
+            driver.findElement(By.className("shopping_cart_badge")).getText(),
+            "1"
+    );
+	}
   
 }
